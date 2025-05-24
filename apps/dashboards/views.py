@@ -3,7 +3,7 @@ from web_project import TemplateLayout
 from django.http import JsonResponse
 from django.db.models import Count
 from django.db.models.functions import ExtractYear
-from .models import Album
+from .models import Album, Song, Artist
 
 
 """
@@ -55,5 +55,18 @@ def awards_by_album(request):
     )
     return JsonResponse({
         'titles': [entry['title'] for entry in data],
+        'counts': [entry['award_count'] for entry in data]
+    })
+
+def most_awarded_artist(request):
+    data = (
+        Artist.objects
+        .annotate(award_count=Count('albums__awards'))
+        .filter(award_count__gt=0)
+        .values('name', 'award_count')
+        .order_by('-award_count')
+    )
+    return JsonResponse({
+        'labels': [entry['name'] for entry in data],
         'counts': [entry['award_count'] for entry in data]
     })

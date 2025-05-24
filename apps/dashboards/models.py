@@ -27,7 +27,7 @@ class Album(BaseModel):
     release_date = models.DateField()
     album_type = models.CharField(max_length=20, choices=AlbumType.choices)
     language = models.CharField(max_length=50)
-    artist = models.ForeignKey('Artist', on_delete=models.CASCADE, related_name='albums', null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='albums')
 
     def __str__(self):
         return self.title
@@ -38,7 +38,6 @@ class Song(BaseModel):
     duration = models.DurationField()
     is_title_track = models.BooleanField(default=False)
     music_video_views = models.PositiveIntegerField(null=True, blank=True)
-    featured_artists = models.ManyToManyField(Artist, blank=True, related_name='featured_songs')
 
     def __str__(self):
         return self.title

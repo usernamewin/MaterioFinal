@@ -8,7 +8,7 @@
 {% endblock page_js %} {% block content %}
 <div class="row gy-6">
   <!-- Albums Released Over Time -->
-  <div class="col-xl-4 col-md-6">
+  <div class="col-12">
     <div class="card">
       <div class="card-header">
         <h5 class="mb-0">Albums Released Over Time</h5>
@@ -20,25 +20,39 @@
   </div>
 
   <!-- Album Type Distribution -->
-  <div class="col-xl-4 col-md-6">
+  <div class="col-12">
     <div class="card">
       <div class="card-header">
         <h5 class="mb-0">Album Type Distribution</h5>
       </div>
       <div class="card-body">
-        <div id="albumTypeDistributionChart" style="height: 315px"></div>
+        <div id="albumTypeDistributionChart" style="height: 300px"></div>
       </div>
     </div>
   </div>
 
   <!-- Awards by Album -->
-  <div class="col-xl-4 col-md-12">
+  <div class="col-12">
     <div class="card">
       <div class="card-header">
         <h5 class="mb-0">Awards by Album</h5>
       </div>
       <div class="card-body">
-        <div id="awardsByAlbumChart" style="height: 300px"></div>
+        <div style="width: 100%; height: 300px; overflow-x: hidden; overflow-y: auto">
+          <div id="awardsByAlbumChart" style="height: 300px; min-width: 800px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Awards Per Arties -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Number of Award Per Artists</h5>
+      </div>
+      <div class="card-body">
+        <div id="mostAwardedArtistChart" style="height: 300px"></div>
       </div>
     </div>
   </div>

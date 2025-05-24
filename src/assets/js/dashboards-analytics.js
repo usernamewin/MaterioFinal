@@ -17,6 +17,7 @@
 fetch('/api/albums-over-time/')
   .then(res => res.json())
   .then(data => {
+    
     new ApexCharts(document.querySelector("#albumsOverTimeChart"), {
       chart: { type: 'line', height: 300 },
       series: [{ name: 'Albums', data: data.counts }],
@@ -28,8 +29,9 @@ fetch('/api/albums-over-time/')
 fetch('/api/album-type-distribution/')
   .then(res => res.json())
   .then(data => {
+    
     new ApexCharts(document.querySelector("#albumTypeDistributionChart"), {
-      chart: { type: 'donut', height: 300 },
+      chart: { type: 'pie', height: 300 },
       series: data.counts,
       labels: data.labels,
     }).render();
@@ -39,10 +41,33 @@ fetch('/api/album-type-distribution/')
 fetch('/api/awards-by-album/')
   .then(res => res.json())
   .then(data => {
+    const barHeight = 35; 
+    const chartHeight = data.counts.length * barHeight;
+
     new ApexCharts(document.querySelector("#awardsByAlbumChart"), {
-      chart: { type: 'bar', height: 300 },
+      chart: {
+        type: 'bar',
+        height: chartHeight 
+      },
       series: [{ name: 'Awards', data: data.counts }],
       xaxis: { categories: data.titles },
+      plotOptions: {
+        bar: { horizontal: true }
+      },
+      dataLabels: { enabled: true }
     }).render();
   });
+
+// Award Per Artist
+fetch('/api/most-awarded-artist/')
+  .then(res => res.json())
+  .then(data => {
+    
+    new ApexCharts(document.querySelector("#mostAwardedArtistChart"), {
+      chart: { type: 'donut', height: 300 },
+      series: data.counts,
+      labels: data.labels,
+    }).render();
+  });
+
 })();

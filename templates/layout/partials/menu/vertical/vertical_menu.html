@@ -24,36 +24,31 @@
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ri-home-smile-line"></i>
         <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-        <span class="badge bg-danger rounded-pill ms-auto">5</span>
       </a>
       <ul class="menu-sub">
         <li class="menu-item {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
           <a href="{% url 'index' %}" class="menu-link">
-            <div class="text-truncate" data-i18n="Analytics">Charts</div>
+            <div class="text-truncate" data-i18n="Chart">Charts</div>
+          </a>
+        </li>
+        <li class="menu-item" {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
+          <a href="#" class="menu-link">
+            <div class="text-truncate" data-i18n="Artist">Artists</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{% get_theme_variables 'live_preview' %}dashboard/crm/" class="menu-link" target="_blank">
-            <div class="text-truncate" data-i18n="CRM">Artists</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
+           <a href="#" class="menu-link">
+            <div class="text-truncate" data-i18n="Album">Albums</div>
+          </a>
+        </li>
+        <li class="menu-item" {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
+          <a href="#" class="menu-link">
+            <div class="text-truncate" data-i18n="Song">Songs</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="{% get_theme_variables 'live_preview' %}app/ecommerce/dashboard/" class="menu-link" target="_blank">
-            <div class="text-truncate" data-i18n="eCommerce">Albums</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="{% get_theme_variables 'live_preview' %}app/logistics/dashboard/" class="menu-link" target="_blank">
-            <div class="text-truncate" data-i18n="Logistics">Songs</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="{% get_theme_variables 'live_preview' %}app/academy/dashboard/" class="menu-link" target="_blank">
-            <div class="text-truncate" data-i18n="Academy">Awards</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
+           <a href="#" class="menu-link">
+            <div class="text-truncate" data-i18n="Award">Awards</div>
           </a>
         </li>
       </ul>
