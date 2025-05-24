@@ -3,7 +3,7 @@ from web_project import TemplateLayout
 from django.http import JsonResponse
 from django.db.models import Count
 from django.db.models.functions import ExtractYear
-from .models import Album, Song, Artist
+from .models import Album, Song, Artist, Award
 
 
 """
@@ -70,3 +70,16 @@ def most_awarded_artist(request):
         'labels': [entry['name'] for entry in data],
         'counts': [entry['award_count'] for entry in data]
     })
+
+class TableView(TemplateView):
+    template_name = 'tables_basic.html'
+
+    def get_context_data(self, **kwargs):
+        context = TemplateLayout.init(self, super().get_context_data(**kwargs))
+
+        context['artists'] = Artist.objects.all()
+        context['albums'] = Album.objects.all()
+        context['songs'] = Song.objects.all()
+        context['awards'] = Award.objects.all()
+
+        return context

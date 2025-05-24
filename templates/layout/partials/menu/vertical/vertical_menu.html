@@ -3,9 +3,7 @@
   {% if not navbar_full %}
   <div class="app-brand demo">
     <a href="{% url 'index' %}" class="app-brand-link">
-      <span class="app-brand-logo demo me-1">
-        {% include 'partials/logo.html' %}
-      </span>
+      <span class="app-brand-logo demo me-1"> {% include 'partials/logo.html' %} </span>
       <span class="app-brand-text demo menu-text fw-semibold ms-2">{% get_theme_variables 'template_name' %}</span>
     </a>
 
@@ -15,12 +13,12 @@
   </div>
   {% endif %}
 
-
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
-
-    <li class="menu-item {% if 'index' == request.resolver_match.url_name or '/dashbord/' in request.path %}active open{% endif %}">
+    <li
+      class="menu-item {% if 'index' == request.resolver_match.url_name or '/dashbord/' in request.path %}active open{% endif %}"
+    >
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ri-home-smile-line"></i>
         <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
@@ -31,27 +29,14 @@
             <div class="text-truncate" data-i18n="Chart">Charts</div>
           </a>
         </li>
-        <li class="menu-item" {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
-          <a href="#" class="menu-link">
-            <div class="text-truncate" data-i18n="Artist">Artists</div>
-          </a>
-        </li>
-        <li class="menu-item">
-           <a href="#" class="menu-link">
-            <div class="text-truncate" data-i18n="Album">Albums</div>
-          </a>
-        </li>
-        <li class="menu-item" {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
-          <a href="#" class="menu-link">
-            <div class="text-truncate" data-i18n="Song">Songs</div>
-          </a>
-        </li>
-        <li class="menu-item">
-           <a href="#" class="menu-link">
-            <div class="text-truncate" data-i18n="Award">Awards</div>
-          </a>
-        </li>
       </ul>
     </li>
 
+    <li class="menu-item {% if '/tables/basic/' in request.path %}active{% endif %}">
+      <a href="{% url 'tables-basic' %}" class="menu-link">
+        <i class="menu-icon tf-icons ri-table-alt-line"></i>
+        <div class="text-truncate" data-i18n="Tables">Tables</div>
+      </a>
+    </li>
+  </ul>
 </aside>

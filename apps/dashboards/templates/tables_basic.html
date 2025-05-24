@@ -1,0 +1,191 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Tables - Basic Tables{% endblock %}
+
+{% block content %}
+<!-- Artists Table -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h4>List of Artists</h4></div>
+            <div class="card-category">Registered Artists</div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for artist in artists %}
+                <tr>
+                  <td>{{ artist.name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="1" class="text-center">
+                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-12">
+
+<!-- Albums Table -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h4>List of Albums</h4></div>
+            <div class="card-category">Registered Albums</div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Artist</th>
+                  <th scope="col">Album Type</th>
+                  <th scope="col">Release Date</th>
+                  <th scope="col">Language</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for album in albums %}
+                <tr>
+                  <td>{{ album.title }}</td>
+                  <td>{{ album.artist.name }}</td>
+                  <td>{{ album.album_type }}</td>
+                  <td>{{ album.release_date }}</td>
+                  <td>{{ album.language }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center">
+                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-12">
+
+<!-- Songs Table -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h4>List of Songs</h4></div>
+            <div class="card-category">Registered Songs</div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Album</th>
+                  <th scope="col">Duration</th>
+                  <th scope="col">Title Track</th>
+                  <th scope="col">MV Views</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for song in songs %}
+                <tr>
+                  <td>{{ song.title }}</td>
+                  <td>{{ song.album.title }}</td>
+                  <td>{{ song.duration }}</td>
+                  <td>{% if song.is_title_track %}Yes{% else %}No{% endif %}</td>
+                  <td>{{ song.music_video_views|default:"N/A" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center">
+                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-12">
+
+<!-- Awards Table -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h4>List of Awards</h4></div>
+            <div class="card-category">Registered Awards</div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Album</th>
+                  <th scope="col">Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for award in awards %}
+                <tr>
+                  <td>{{ award.name }}</td>
+                  <td>{{ award.album.title }}</td>
+                  <td>{{ award.year }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="3" class="text-center">
+                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
