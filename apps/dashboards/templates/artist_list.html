@@ -1,0 +1,48 @@
+{% extends layout_path %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+<!-- Artists Table -->
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><h4>List of Artists</h4></div>
+            <div class="card-category">Registered Artists</div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for artist in artists %}
+                <tr>
+                  <td>{{ artist.name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="1" class="text-center">
+                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

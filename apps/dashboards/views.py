@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.db.models import Count
 from django.db.models.functions import ExtractYear
 from .models import Album, Song, Artist, Award
+from django.core.paginator import Paginator
 
 
 """
@@ -71,15 +72,54 @@ def most_awarded_artist(request):
         'counts': [entry['award_count'] for entry in data]
     })
 
-class TableView(TemplateView):
-    template_name = 'tables_basic.html'
+class ArtistView(TemplateView):
+    template_name = 'artist_list.html'
 
     def get_context_data(self, **kwargs):
         context = TemplateLayout.init(self, super().get_context_data(**kwargs))
+        artist_list = Artist.objects.all().order_by('name')
+        paginator = Paginator(artist_list, 8)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['artists'] = page_obj
+        context['page_obj'] = page_obj
+        return context
 
-        context['artists'] = Artist.objects.all()
-        context['albums'] = Album.objects.all()
-        context['songs'] = Song.objects.all()
-        context['awards'] = Award.objects.all()
+class AlbumView(TemplateView):
+    template_name = 'album_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = TemplateLayout.init(self, super().get_context_data(**kwargs))
+        album_list = Album.objects.select_related('artist').all().order_by('-release_date')
+        paginator = Paginator(album_list, 8)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['albums'] = page_obj
+        context['page_obj'] = page_obj
+        return context
+
+class SongView(TemplateView):
+    template_name = 'song_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = TemplateLayout.init(self, super().get_context_data(**kwargs))
+        song_list = Song.objects.select_related('album__artist').all().order_by('title')
+        paginator = Paginator(song_list, 8)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['songs'] = page_obj
+        context['page_obj'] = page_obj
+        return context
+
+class AwardView(TemplateView):
+    template_name = 'award_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = TemplateLayout.init(self, super().get_context_data(**kwargs))
+        award_list = Award.objects.select_related('album').all().order_by('-year')
+        paginator = Paginator(award_list, 8)
+        page = self.request.GET.get('page')
+        page_obj = paginator.get_page(page)
+        context['awards'] = page_obj
+        context['page_obj'] = page_obj
         return context

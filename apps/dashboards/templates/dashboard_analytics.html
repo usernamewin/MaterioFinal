@@ -1,11 +1,32 @@
-{% extends layout_path %} {% load static %} {% load i18n %} {% block title %}Dashboard - Analytics{% endblock title %}
-{% block vendor_css %} {{ block.super }}
-<link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
-{% endblock vendor_css %} {% block vendor_js %} {{ block.super }}
-<script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
-{% endblock vendor_js %} {% block page_js %} {{ block.super }}
-<script src="{% static 'js/dashboards-analytics.js' %}"></script>
-{% endblock page_js %} {% block content %}
+{% extends layout_path %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block vendor_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
+{% endblock vendor_css %}
+
+{% block vendor_js %}
+  {{ block.super }}
+  <script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
+{% endblock vendor_js %}
+
+{% block page_js %}
+  {{ block.super }}
+  <script src="{% static 'js/dashboards-analytics.js' %}"></script>
+{% endblock page_js %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="mb-4">
+  <h4 class="fw-bold py-3 mb-4">
+    <class="text-muted fw-light">Charts
+  </h4>
+</div>
+
 <div class="row gy-6">
   <!-- Albums Released Over Time -->
   <div class="col-12">
@@ -45,11 +66,11 @@
     </div>
   </div>
 
-  <!-- Awards Per Arties -->
+  <!-- Awards Per Artist -->
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="mb-0">Number of Award Per Artists</h5>
+        <h5 class="mb-0">Number of Awards Per Artist</h5>
       </div>
       <div class="card-body">
         <div id="mostAwardedArtistChart" style="height: 300px"></div>

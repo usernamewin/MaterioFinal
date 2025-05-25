@@ -16,27 +16,40 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
-    <li
-      class="menu-item {% if 'index' == request.resolver_match.url_name or '/dashbord/' in request.path %}active open{% endif %}"
-    >
-      <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons ri-home-smile-line"></i>
+    <li class="menu-item {% if 'index' == request.resolver_match.url_name or '/dashbord/' in request.path %}active{% endif %}">
+        <a href="{% url 'index' %}" class="menu-link">
+          <i class="menu-icon tf-icons ri-home-smile-line"></i>
         <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
       </a>
-      <ul class="menu-sub">
-        <li class="menu-item {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
-          <a href="{% url 'index' %}" class="menu-link">
-            <div class="text-truncate" data-i18n="Chart">Charts</div>
-          </a>
-        </li>
-      </ul>
     </li>
 
-    <li class="menu-item {% if '/tables/basic/' in request.path %}active{% endif %}">
-      <a href="{% url 'tables-basic' %}" class="menu-link">
-        <i class="menu-icon tf-icons ri-table-alt-line"></i>
-        <div class="text-truncate" data-i18n="Tables">Tables</div>
+    <li class="menu-item {% if '/artist/list/' in request.path %}active{% endif %}">
+      <a href="{% url 'artist-list' %}" class="menu-link">
+        <i class="menu-icon tf-icons ri-user-star-line"></i>
+        <div class="text-truncate" data-i18n="Artist">Artists</div>
       </a>
     </li>
+
+    <li class="menu-item {% if '/album/list/' in request.path %}active{% endif %}">
+      <a href="{% url 'album-list' %}" class="menu-link">
+        <i class="menu-icon tf-icons ri-disc-line"></i>
+        <div class="text-truncate" data-i18n="Album">Albums</div>
+      </a>
+    </li>
+
+    <li class="menu-item {% if '/song/list/' in request.path %}active{% endif %}">
+      <a href="{% url 'song-list' %}" class="menu-link">
+        <i class="menu-icon tf-icons ri-music-line"></i>
+        <div class="text-truncate" data-i18n="Song">Songs</div>
+      </a>
+    </li>
+
+    <li class="menu-item {% if '/award/list/' in request.path %}active{% endif %}">
+      <a href="{% url 'award-list' %}" class="menu-link">
+        <i class="menu-icon tf-icons ri-trophy-line"></i>
+        <div class="text-truncate" data-i18n="Award">Awards</div>
+      </a>
+    </li>
+
   </ul>
 </aside>
