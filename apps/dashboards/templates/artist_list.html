@@ -21,12 +21,14 @@
               <thead>
                 <tr>
                   <th scope="col">Name</th>
+                  <th scope="col">Debut Date</th>
                 </tr>
               </thead>
               <tbody>
                 {% for artist in artists %}
                 <tr>
                   <td>{{ artist.name }}</td>
+                  <td>{{ artist.debut_date }}</td>
                 </tr>
                 {% empty %}
                 <tr>
